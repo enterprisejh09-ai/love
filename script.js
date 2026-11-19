@@ -1,7 +1,7 @@
 "use strict";
 
 const WORD_COUNT = 100;
-const MESSAGE = "RI MI";
+const MESSAGE = "I Love You";
 
 /* Create each animated text layer */
 function createItem(index) {
