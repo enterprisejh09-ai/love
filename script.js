@@ -1,21 +1,26 @@
 "use strict";
 
-const WORD_COUNT = 140;
+const WORD_COUNT = 100;
 const MESSAGE = "I love you";
 
+/* Create each animated text layer */
 function createItem(index) {
   const item = document.createElement("div");
+
   item.className = "heart__item";
   item.style.setProperty("--index", index);
 
   const word = document.createElement("span");
+
   word.className = "heart__word";
   word.textContent = MESSAGE;
+
   item.append(word);
 
   return item;
 }
 
+/* Generate all heart text elements */
 function renderHeart(container, count = WORD_COUNT) {
   const fragment = document.createDocumentFragment();
 
@@ -27,4 +32,7 @@ function renderHeart(container, count = WORD_COUNT) {
 }
 
 const heart = document.getElementById("heart");
-if (heart) renderHeart(heart);
+
+if (heart) {
+  renderHeart(heart);
+}
