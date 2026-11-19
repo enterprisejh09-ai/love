@@ -1,0 +1,190 @@
+
+:root {
+  --bg: #000;
+  --accent: #ea80b0;
+  --glow: #ffb6d5;
+
+  --size: min(450px, 80vmin);
+
+  /* Original animation timing */
+  --sway-duration: 10s;
+  --fall-duration: 20s;
+  --stagger: 300ms;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Center heart */
+.heart {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: var(--size);
+  height: var(--size);
+  margin: calc(var(--size) / -2) 0 0 calc(var(--size) / -2);
+}
+
+/* Animated text layers */
+.heart__item {
+  position: absolute;
+  inset: 0 auto auto 0;
+
+  animation:
+    sway var(--sway-duration) ease-in-out infinite alternate,
+    fall var(--fall-duration) linear infinite;
+
+  animation-delay: calc(var(--index) * var(--stagger) * -1);
+
+  will-change: transform, translate;
+}
+
+/* Clear and readable I love you */
+.heart__word {
+  display: block;
+
+  color: var(--accent);
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(16px, 3.5vmin, 22px);
+  font-weight: 700;
+
+  letter-spacing: 1.2px;
+  white-space: nowrap;
+
+  text-shadow:
+    0 0 3px #fff,
+    0 0 6px #ffb6d5,
+    0 0 12px #ea80b0,
+    0 0 20px rgba(234, 128, 176, 0.8);
+
+  transform: translateY(-100%) rotate(-30deg);
+}
+
+/* Horizontal movement */
+@keyframes sway {
+  from {
+    translate: 0 0;
+  }
+
+  to {
+    translate: var(--size) 0;
+  }
+}
+
+/* Original heart-shaped vertical path */
+@keyframes fall {
+  0% {
+    transform: translateY(calc(var(--size) * 0.4));
+  }
+
+  10% {
+    transform: translateY(calc(var(--size) * 0.1));
+  }
+
+  15% {
+    transform: translateY(calc(var(--size) * 0.01));
+  }
+
+  18% {
+    transform: translateY(0);
+  }
+
+  20% {
+    transform: translateY(calc(var(--size) * 0.01));
+  }
+
+  22% {
+    transform: translateY(calc(var(--size) * 0.076923));
+  }
+
+  24% {
+    transform: translateY(calc(var(--size) * 0.142857));
+  }
+
+  25% {
+    transform: translateY(calc(var(--size) * 0.25));
+  }
+
+  26% {
+    transform: translateY(calc(var(--size) * 0.142857));
+  }
+
+  28% {
+    transform: translateY(calc(var(--size) * 0.076923));
+  }
+
+  30% {
+    transform: translateY(calc(var(--size) * 0.01));
+  }
+
+  32% {
+    transform: translateY(0);
+  }
+
+  35% {
+    transform: translateY(calc(var(--size) * 0.01));
+  }
+
+  40% {
+    transform: translateY(calc(var(--size) * 0.1));
+  }
+
+  50% {
+    transform: translateY(calc(var(--size) * 0.4));
+  }
+
+  71% {
+    transform: translateY(calc(var(--size) * 0.952381));
+  }
+
+  72.5% {
+    transform: translateY(calc(var(--size) * 0.980392));
+  }
+
+  75% {
+    transform: translateY(var(--size));
+  }
+
+  77.5% {
+    transform: translateY(calc(var(--size) * 0.980392));
+  }
+
+  79% {
+    transform: translateY(calc(var(--size) * 0.952381));
+  }
+
+  100% {
+    transform: translateY(calc(var(--size) * 0.4));
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  :root {
+    --size: 85vmin;
+  }
+
+  .heart__word {
+    font-size: clamp(15px, 3.8vmin, 19px);
+    letter-spacing: 0.8px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .heart__item {
+    animation-duration: 40s, 80s;
+  }
+}
